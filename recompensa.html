@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Luana! 💜</title>
+    <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+    <style>
+        :root {
+            /* Cores em gradiente e variantes */
+            --roxo-escuro: #2e0854;
+            --roxo-vibrante: #6a0dad;
+            --roxo-claro: #9b59b6;
+            --magenta: #ff00ff;
+            --texto-claro: #f8f9fa;
+            --sombra-bloco: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            /* Fundo com gradiente não sólido */
+            background: radial-gradient(circle at center, var(--roxo-vibrante) 0%, var(--roxo-escuro) 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--texto-claro);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: 'Georgia', serif;
+            font-size: 3.8em;
+            color: var(--magenta);
+            text-shadow: 3px 3px 10px var(--sombra-bloco);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .cake-container {
+            cursor: pointer;
+            margin: 40px 0;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 11em;
+            filter: drop-shadow(0 15px 15px var(--sombra-bloco));
+            user-select: none;
+        }
+
+        .cake-container:hover {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        #content-container {
+            display: none;
+            width: 100%;
+            max-width: 700px;
+            margin-top: 30px;
+            animation: textReveal 1.2s ease-out forwards;
+        }
+
+        #birthdayText {
+            background-color: rgba(255, 255, 255, 0.08); /* Fundo semi-transparente */
+            backdrop-filter: blur(10px); /* Efeito de vidro */
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px var(--sombra-bloco);
+            text-align: justify;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.15em;
+            color: #ffffff;
+        }
+
+        #birthdayText p {
+            margin-bottom: 20px;
+            text-indent: 1.5em; /* Recuo de parágrafo */
+        }
+
+        @keyframes textReveal {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--magenta);
+            text-align: right;
+            font-weight: bold;
+            text-shadow: 1px 1px 5px black;
+        }
+
+        .hidden-player {
+            height: 0;
+            width: 0;
+            overflow: hidden;
+            visibility: hidden;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Feliz Aniversário, Luana!</h1>
+
+    <div class="cake-container" onclick="revealContent()">
+        🎂 
+    </div>
+
+    <div id="content-container">
+        <div class="hidden-player">
+            <iframe id="sc-widget" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A284746732&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=false"></iframe>
+        </div>
+
+        <div id="birthdayText">
+            <p>Minha Princesa Luana, hoje o mundo celebra você, mas sou eu quem agradece por ter a sorte de tê-la iluminando minha vida. Seu aniversário é um marco especial, um dia para honrar a pessoa incrível que você é e o presente inestimável que sua amizade representa. Compartilhamos tantas histórias, risadas que doem a barriga e ombros que confortam as lágrimas. Cada momento, bom ou ruim, só solidificou o laço precioso que nos une.</p>
+
+            <p>Sua força, sua paixão e a forma como você persegue seus sonhos são uma inspiração constante. Você é autêntica, resiliente e uma alma gentil, e eu tenho um orgulho imenso de ser testemunha da sua jornada.</p>
+
+            <p>Neste novo ciclo, desejo que a vida lhe sorria em dobro: que haja muita saúde, amor, prosperidade e realizações que superem todas as suas expectativas. Continue brilhando com essa luz própria, e lembre-se sempre que, não importa o desafio, eu estarei aqui, na primeira fila, para celebrar cada conquista e segurar sua mão nos momentos de incerteza.</p>
+
+            <p>Você é, e sempre será, a luz constante na minha vida. Mal posso esperar pelas próximas aventuras e por todas as novas memórias preciosas que vamos construir lado a lado.</p>
+
+            <p style="text-align: center; font-weight: bold; font-size: 1.3em; text-indent: 0;">Feliz Aniversário! Continua sendo esse mulherão da porra que você é!</p>
+            
+            <p class="signature">Com todo o meu amor e gratidão,<br>Felipe.</p>
+        </div>
+    </div>
+    
+    <script>
+        const widgetIframe = document.getElementById('sc-widget');
+        const widget = SC.Widget(widgetIframe);
+        const contentContainer = document.getElementById('content-container');
+        
+        function revealContent() {
+            if (contentContainer.style.display === 'none' || contentContainer.style.display === '') {
+                contentContainer.style.display = 'block';
+                
+                // Força o play e garante o volume
+                widget.play();
+                widget.setVolume(100);
+
+                // Scroll suave para o texto
+                window.scrollTo({
+                    top: contentContainer.offsetTop,
+                    behavior: 'smooth'
+                });
+            } else {
+                contentContainer.style.display = 'none';
+                widget.pause();
+            }
+        }
+    </script>
+</body>
+</html>
