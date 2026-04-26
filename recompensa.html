@@ -40,6 +40,11 @@
             margin-bottom: 40px;
             letter-spacing: 2px;
         }
+        
+        h5 {
+            margin-top: 0;
+            opacity: 0.8;
+        }
 
         .cake-container {
             cursor: pointer;
@@ -52,6 +57,38 @@
 
         .cake-container:hover {
             transform: scale(1.1) rotate(3deg);
+        }
+        /* Estilização do Slider de Volume */
+        .volume-control {
+            display: none; /* Inicia oculto, aparece com o conteúdo */
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        #volume-slider {
+            -webkit-appearance: none;
+            width: 150px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--magenta);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--magenta);
         }
 
         #content-container {
@@ -136,14 +173,17 @@
         const widgetIframe = document.getElementById('sc-widget');
         const widget = SC.Widget(widgetIframe);
         const contentContainer = document.getElementById('content-container');
+        const volumeWrapper = document.getElementById('volume-wrapper');
+        const volumeSlider = document.getElementById('volume-slider');
         
         function revealContent() {
             if (contentContainer.style.display === 'none' || contentContainer.style.display === '') {
                 contentContainer.style.display = 'block';
+                volumeWrapper.style.display = 'flex'; // Mostra o slider
                 
                 // Força o play e garante o volume
                 widget.play();
-                widget.setVolume(100);
+                widget.setVolume(volumeSlider.value);
 
                 // Scroll suave para o texto
                 window.scrollTo({
@@ -152,9 +192,15 @@
                 });
             } else {
                 contentContainer.style.display = 'none';
+                volumeWrapper.style.display = 'none';
                 widget.pause();
             }
         }
+        // Listener para mudar o volume em tempo real
+        volumeSlider.addEventListener('input', (e) => {
+            const volume = e.target.value;
+            widget.setVolume(volume);
+        });
     </script>
 </body>
 </html>
